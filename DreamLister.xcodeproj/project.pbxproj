@@ -22,6 +22,7 @@
 		553A75411EE11C680065D744 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A75391EE11C680065D744 /* Item+CoreDataClass.swift */; };
 		553A75421EE11C680065D744 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A753A1EE11C680065D744 /* Item+CoreDataProperties.swift */; };
 		553A75471EE344870065D744 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A75461EE344870065D744 /* MaterialView.swift */; };
+		553A75491EE347420065D744 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553A75481EE347420065D744 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		553A75391EE11C680065D744 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		553A753A1EE11C680065D744 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		553A75461EE344870065D744 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		553A75481EE347420065D744 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				553A75461EE344870065D744 /* MaterialView.swift */,
+				553A75481EE347420065D744 /* ItemCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553A75491EE347420065D744 /* ItemCell.swift in Sources */,
 				553A75411EE11C680065D744 /* Item+CoreDataClass.swift in Sources */,
 				553A753B1EE11C680065D744 /* ItemType+CoreDataClass.swift in Sources */,
 				553A753C1EE11C680065D744 /* ItemType+CoreDataProperties.swift in Sources */,
