@@ -35,7 +35,7 @@ class CustomTextField: UITextField {
     override func draw(_ rect: CGRect) {
         self.layer.masksToBounds = false
         self.backgroundColor = UIColor(red: 230, green: 230, blue: 230)
-        self.layer.cornerRadius = 3.0
+        self.layer.cornerRadius = 5.0
         self.tintColor = tintCol
         self.textColor = fontCol
         self.layer.borderWidth = 1
