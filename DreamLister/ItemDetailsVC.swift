@@ -26,9 +26,6 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MIKE: This has been loaded once already.
-        //generateTestStores()
-        
         if let topItem = self.navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         }
@@ -49,6 +46,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             navigationItem.setRightBarButton(nil, animated: true)
         }
         
+        self.hideKeyboard()
         
     }
     
@@ -72,14 +70,22 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     func getStores() {
         let fetchRequest: NSFetchRequest<Store> = Store.fetchRequest()
+        let nameSort = NSSortDescriptor(key: "name", ascending: true)
         
         do {
+            fetchRequest.sortDescriptors = [nameSort]
             self.stores = try context.fetch(fetchRequest)
             self.storePicker.reloadAllComponents()
         } catch {
             let err = error as NSError
             print("\(err)")
         }
+        
+        if stores.count == 0 {
+            generateTestStores()
+            getStores()
+        }
+        
     }
     
     func loadItemData() {
@@ -132,8 +138,9 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             item.details = details
         }
         
-        item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
-        
+        if stores.count > 0 {
+            item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
+        }
         
         ad.saveContext()
         navigationController?.popViewController(animated: true)
@@ -149,8 +156,6 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     @IBAction func addImage(_ sender: UIButton) {
         present(imagePicker, animated: true, completion: nil)
-        
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -158,27 +163,36 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             thumbImg.image = img
         }
         imagePicker.dismiss(animated: true, completion: nil)
-        
     }
     
-    
-    
     func generateTestStores() {
-        let store = Store(context: context)
-        store.name = "Best Buy"
+        
+        let store1 = Store(context: context)
+        store1.name = "Amazon"
         let store2 = Store(context: context)
-        store2.name = "Tesla Dealership"
+        store2.name = "Best Buy"
         let store3 = Store(context: context)
         store3.name = "Frys Electronics"
         let store4 = Store(context: context)
         store4.name = "Target"
-        let store5 = Store(context: context)
-        store5.name = "Amazon"
-        let store6 = Store(context: context)
-        store6.name = "K Mart"
         
         ad.saveContext()
     }
+}
 
-
+extension UIViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
 }
